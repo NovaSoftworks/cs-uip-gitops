@@ -26,11 +26,20 @@ spec:
                   ui_url: https://account.novasoftworks.com/create
                 login:
                   ui_url: https://account.novasoftworks.com/login
+                verification:
+                  enabled: true
+                  use: code
+                  lifespan: 15m
             identity:
               default_schema_id: user
               schemas:
                 - id: user
                   url: file:///etc/kratos/schemas/user.schema.json # This file is mounted from a ConfigMap
+            courier:
+              smtp:
+                from_address: noreply@novasoftworks.com
+                from_name: Nova Softworks
+
 
           automigration:
             enabled: true # required for Kratos to automatically create its table in the database

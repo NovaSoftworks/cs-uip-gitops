@@ -1,0 +1,50 @@
+# https://github.com/ory/k8s/blob/master/helm/charts/kratos/values.yaml
+
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kratos
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    name: in-cluster
+    namespace: user-identity-platform
+  source:
+    repoURL: https://k8s.ory.sh/helm/charts
+    chart: kratos
+    targetRevision: 0.55.0
+    helm:
+      valuesObject:
+        kratos:
+          config: # https://www.ory.sh/docs/kratos/reference/configuration
+            selfservice:
+              default_browser_return_url: https://account.novasoftworks.com/
+
+            identity:
+              default_schema_id: user
+              schemas:
+                - id: user
+                  url: file:///etc/kratos/schemas/user.schema.json # This file is mounted from a ConfigMap
+
+          automigration:
+            enabled: true # required for Kratos to automatically create its table in the database
+
+        deployment:
+          extraVolumes:
+            - name: kratos-config
+              configMap:
+                name: kratos-identity-schema
+
+          extraVolumeMounts:
+            - name: kratos-config
+              mountPath: /etc/kratos/schemas
+
+          environmentSecretsName: kratos-env-vars
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
+    syncOptions: 
+      - CreateNamespace=true

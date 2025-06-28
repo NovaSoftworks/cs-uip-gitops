@@ -21,7 +21,11 @@ spec:
           config: # https://www.ory.sh/docs/kratos/reference/configuration
             selfservice:
               default_browser_return_url: https://account.novasoftworks.com/
-
+              flows:
+                registration:
+                  ui_url: https://account.novasoftworks.com/create
+                login:
+                  ui_url: https://account.novasoftworks.com/login
             identity:
               default_schema_id: user
               schemas:

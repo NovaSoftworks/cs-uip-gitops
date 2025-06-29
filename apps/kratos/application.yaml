@@ -20,16 +20,38 @@ spec:
         kratos:
           config: # https://www.ory.sh/docs/kratos/reference/configuration
             selfservice:
-              default_browser_return_url: https://account.novasoftworks.com/
+              default_browser_return_url: https://account.novasoftworks.com/overview
               flows:
                 registration:
-                  ui_url: https://account.novasoftworks.com/create
+                  enabled: true
+                  ui_url: https://account.novasoftworks.com/creation
+                  after:
+                    default_browser_return_url: https://account.novasoftworks.com/overview
                 login:
                   ui_url: https://account.novasoftworks.com/login
+                  after:
+                    default_browser_return_url: https://account.novasoftworks.com/overview
+                logout:
+                  after:
+                    default_browser_return_url: https://account.novasoftworks.com/login
+                recovery:
+                  enabled: true
+                  use: link
+                  ui_url: https://account.novasoftworks.com/recovery
+                  after:
+                    default_browser_return_url: https://account.novasoftworks.com/login
                 verification:
                   enabled: true
-                  use: code
+                  use: link
                   lifespan: 15m
+                  ui_url: https://account.novasoftworks.com/verification
+                  after:
+                    default_browser_return_url: https://account.novasoftworks.com/overview
+
+              methods:
+                link:
+                  enabled: true
+
             identity:
               default_schema_id: user
               schemas:

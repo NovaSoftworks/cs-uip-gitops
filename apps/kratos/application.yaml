@@ -43,7 +43,6 @@ spec:
                 verification:
                   enabled: true
                   use: link
-                  lifespan: 15m
                   ui_url: https://account.novasoftworks.com/verification
                   after:
                     default_browser_return_url: https://account.novasoftworks.com/overview
@@ -51,17 +50,24 @@ spec:
               methods:
                 link:
                   enabled: true
+                  config:
+                    base_url: https://account.novasoftworks.com
+                    lifespan: 15m
+            
+            courier:
+              smtp:
+                from_address: noreply@novasoftworks.com
+                from_name: Nova Softworks
+
+            serve:
+              public:
+                base_url: https://account.novasoftworks.com
 
             identity:
               default_schema_id: user
               schemas:
                 - id: user
                   url: file:///etc/kratos/schemas/user.schema.json # This file is mounted from a ConfigMap
-            courier:
-              smtp:
-                from_address: noreply@novasoftworks.com
-                from_name: Nova Softworks
-
 
           automigration:
             enabled: true # required for Kratos to automatically create its table in the database

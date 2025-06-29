@@ -55,6 +55,25 @@ spec:
               mountPath: /etc/kratos/schemas
 
           environmentSecretsName: kratos-env-vars
+
+        ingress:
+          public:
+            enabled: true
+            className: "nginx"
+            annotations:
+              cert-manager.io/cluster-issuer: letsencrypt-prod
+              nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+              nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+            hosts:
+              - host: account.novasoftworks.com
+                paths:
+                  - path: /
+                    pathType: ImplementationSpecific
+            tls:
+              - secretName: kratos-tls
+                hosts:
+                  - account.novasoftworks.com
+
   syncPolicy:
     automated: 
       prune: true

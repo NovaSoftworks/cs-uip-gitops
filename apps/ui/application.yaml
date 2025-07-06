@@ -1,0 +1,47 @@
+# https://github.com/NovaSoftworks/cs-uip-ui/charts/ui
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ui
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    name: in-cluster
+    namespace: user-identity-platform
+  source:
+    repoURL: https://github.com/NovaSoftworks/cs-uip-ui.git
+    path: charts/ui/
+    targetRevision: main
+    helm:
+      valuesObject:
+        deployment:
+          imagePullSecrets:
+            - name: ghcr-auth
+          env:
+            - name: PUBLIC_BASE_URL
+              value: https://account.novasoftworks.com
+          readinessProbe:
+            enabled: true
+          livenessProbe:
+            enabled: true
+
+        ingress:
+          enabled: true
+          className: nginx
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt-prod
+            nginx.ingress.kubernetes.io/backend-protocol: HTTP
+            nginx.ingress.kubernetes.io/force-ssl-redirect: true
+          host: account.novasoftworks.com
+          tls:
+            enabled: true
+            secretName: ui-tls
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

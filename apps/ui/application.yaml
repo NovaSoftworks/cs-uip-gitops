@@ -19,6 +19,9 @@ spec:
         deployment:
           imagePullSecrets:
             - name: ghcr-auth
+          image:
+            tag: latest
+            pullPolicy: Always
           env:
             - name: PUBLIC_BASE_URL
               value: https://account.novasoftworks.com

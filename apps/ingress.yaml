@@ -25,6 +25,13 @@ spec:
                 name: kratos-public
                 port:
                   number: 80
+          - path: /sessions
+            pathType: Prefix
+            backend:
+              service:
+                name: kratos-public
+                port:
+                  number: 80
           - path: /
             pathType: Prefix
             backend:

@@ -26,7 +26,7 @@ spec:
             - name: PUBLIC_BASE_URL
               value: https://account.novasoftworks.com
             - name: PUBLIC_ENVIRONMENT
-              value: production
+              value: dev
             - name: PUBLIC_LOG_LEVEL
               value: debug
           readinessProbe:

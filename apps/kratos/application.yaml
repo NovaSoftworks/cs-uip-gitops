@@ -24,6 +24,7 @@ spec:
               flows:
                 registration:
                   enabled: true
+                  enable_legacy_one_step: true # todo: study two steps registration
                   ui_url: https://account.novasoftworks.com/creation
                   after:
                     default_browser_return_url: https://account.novasoftworks.com/
@@ -46,6 +47,8 @@ spec:
                   ui_url: https://account.novasoftworks.com/verification
                   after:
                     default_browser_return_url: https://account.novasoftworks.com/
+                #error:
+                  #ui_url: https://account.novasoftworks.com/error
 
               methods:
                 link:

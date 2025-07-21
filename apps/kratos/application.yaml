@@ -32,6 +32,8 @@ spec:
                   ui_url: https://account.novasoftworks.com/login
                   after:
                     default_browser_return_url: https://account.novasoftworks.com/
+                    hooks:
+                      - hook: require_verified_address
                 logout:
                   after:
                     default_browser_return_url: https://account.novasoftworks.com/login

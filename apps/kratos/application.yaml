@@ -27,7 +27,9 @@ spec:
                   enable_legacy_one_step: true # todo: study two steps registration
                   ui_url: https://account.novasoftworks.com/creation
                   after:
-                    default_browser_return_url: https://account.novasoftworks.com/
+                    password:
+                      hooks:
+                        - hook: show_verification_ui
                 login:
                   ui_url: https://account.novasoftworks.com/login
                   after:

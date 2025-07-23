@@ -52,7 +52,6 @@ spec:
                   after:
                     default_browser_return_url: https://account.novasoftworks.com/
                 settings:
-                  enabled: true
                   ui_url: https://account.novasoftworks.com/details
                 #error:
                   #ui_url: https://account.novasoftworks.com/error

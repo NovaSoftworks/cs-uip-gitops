@@ -56,8 +56,6 @@ spec:
                   privileged_session_max_age: 5m
                   after:
                     default_browser_return_url: https://account.novasoftworks.com/details
-                    password:
-                      default_browser_return_url: https://account.novasoftworks.com/security
                 #error:
                   #ui_url: https://account.novasoftworks.com/error
 

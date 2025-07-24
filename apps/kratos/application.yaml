@@ -53,6 +53,14 @@ spec:
                     default_browser_return_url: https://account.novasoftworks.com/
                 settings:
                   ui_url: https://account.novasoftworks.com/details
+                  privileged_session_max_age: 5mn
+                  after:
+                    default_browser_return_url: https://account.novasoftworks.com/details
+                    password:
+                      default_browser_return_url: https://account.novasoftworks.com/security
+                    methods:
+                      enabled: true
+                      ui_url: https://account.novasoftworks.com/security
                 #error:
                   #ui_url: https://account.novasoftworks.com/error
 

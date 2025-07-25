@@ -52,7 +52,7 @@ spec:
                   after:
                     default_browser_return_url: https://account.novasoftworks.com/
                 settings:
-                  ui_url: https://account.novasoftworks.com/details
+                  ui_url: https://account.novasoftworks.com/details/edit
                   privileged_session_max_age: 5m
                   after:
                     default_browser_return_url: https://account.novasoftworks.com/details

@@ -29,6 +29,8 @@ spec:
               value: dev
             - name: PUBLIC_LOG_LEVEL
               value: debug
+            - name: PRIVATE_ADMIN_API_BASE_URL
+              value: http://kratos-admin.user-identity-platform.svc.cluster.local
           readinessProbe:
             enabled: true
           livenessProbe:
